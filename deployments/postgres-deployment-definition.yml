@@ -11,11 +11,11 @@ spec:
       name: postgres-pod
       labels:
         app: demo-voting-app
-        name: postgres-db
+        name: postgres-pod
         tier: db
     spec:
       containers:
-        - name: postgres-container
+        - name: postgres
           image: postgres:9.4
           ports:
             - containerPort: 5432
@@ -23,4 +23,4 @@ spec:
   selector:
     matchLabels:
       app: demo-voting-app
-      name: postgres-db
+      name: postgres-pod
