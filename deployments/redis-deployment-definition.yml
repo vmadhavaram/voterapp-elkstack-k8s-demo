@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    app: redis-in-memory-db
+    tier: db
+spec:
+  template:
+    metadata:
+      name: redis-app-pod
+      labels:
+        app: demo-voting-app
+        name: redis-db
+        tier: db
+    spec:
+      containers:
+        - name: redis-container
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-voting-app
+      name: redis-db
